@@ -134,7 +134,7 @@ app.get("/k/:kartNo", async (req, res) => {
                 <tr><th>Geçerlilik Sonu</th><td>${balanceData.expiration || "N/A"}</td></tr>
               </table>
             </div>
-            <a href="/k/044E80FADB5E80">Varsayılan Kartı Sorgula</a>
+            <a href="/k/044E80FADB5E80">2. Kartı Sorgula</a>
           </body>
           </html>
         `;
