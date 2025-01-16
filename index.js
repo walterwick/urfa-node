@@ -6,7 +6,7 @@ const port = 3000;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.get("/", async (req, res) => {
+app.get("/k", async (req, res) => {
   // URL'deki parametreyi özel olarak alıyoruz
   const fullUrl = req.url;
   const kartNo = fullUrl.split("?=")[1] || "0430207A8E6C80"; // Varsayılan kart numarası
@@ -127,7 +127,7 @@ app.get("/", async (req, res) => {
                 <tr><th>Geçerlilik Sonu</th><td>${balanceData.expiration || "N/A"}</td></tr>
               </table>
             </div>
-            <a href="/?=044E80FADB5E80">044E80FADB5E80 Numaralı Kartı Sorgula</a>
+            <a href="/k?=044E80FADB5E80">044E80FADB5E80 Numaralı Kartı Sorgula</a>
           </body>
           </html>
         `;
