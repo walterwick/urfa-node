@@ -6,10 +6,17 @@ const port = 3000;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.get("/k", async (req, res) => {
-  // URL'deki parametreyi özel olarak alıyoruz
-  const fullUrl = req.url;
-  const kartNo = fullUrl.split("?=")[1] || "0430207A8E6C80"; // Varsayılan kart numarası
+// Varsayılan kart numarası
+const defaultKartNo = "0430207A8E6C80";
+
+// Ana sayfa: varsayılan kart numarası kullanılır
+app.get("/", async (req, res) => {
+  res.redirect(`/k/${defaultKartNo}`);
+});
+
+// Dinamik kart numarası için rota
+app.get("/k/:kartNo", async (req, res) => {
+  const kartNo = req.params.kartNo;
 
   try {
     // Login API'ye POST isteği göndererek token al
@@ -127,7 +134,7 @@ app.get("/k", async (req, res) => {
                 <tr><th>Geçerlilik Sonu</th><td>${balanceData.expiration || "N/A"}</td></tr>
               </table>
             </div>
-            <a href="/k?=044E80FADB5E80">044E80FADB5E80 Numaralı Kartı Sorgula</a>
+            <a href="/k/044E80FADB5E80">Varsayılan Kartı Sorgula</a>
           </body>
           </html>
         `;
